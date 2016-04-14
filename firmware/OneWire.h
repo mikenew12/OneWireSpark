@@ -109,6 +109,12 @@ private:
     inline void pinModeFastInput(void){
       // This could probably be speed up by digging a little deeper past
       // the HAL_Pin_Mode function.
+      HAL_Pin_Mode(_pin, INPUT);
+    }
+
+    inline void pinModeFastInputWithPullup(void){
+      // This could probably be speed up by digging a little deeper past
+      // the HAL_Pin_Mode function.
       HAL_Pin_Mode(_pin, INPUT_PULLUP);
     }
 

@@ -180,7 +180,7 @@ uint8_t OneWire::reset(void)
     delayMicroseconds(480);
     noInterrupts();
 
-    pinModeFastInput();    // allow it to float
+    pinModeFastInputWithPullup(); // MIKE : this uses the pull up resistor
 
     delayMicroseconds(70);
 
@@ -239,7 +239,7 @@ uint8_t OneWire::read_bit(void)
 
     delayMicroseconds(3);
 
-    pinModeFastInput();    // let pin float, pull up will raise
+    pinModeFastInputWithPullup();    // MIKE : this uses the pull up resistor
 
     delayMicroseconds(10);
 
