@@ -16,10 +16,10 @@ Support for Photon added by Brendan Albano and cdrodriguez
 I made monor tweeks to allow use in the web builder and created this repository for
 use in the contributed libs list.
 
-6/2014 - Hotaman 
+6/2014 - Hotaman
 
-I've taken the code that Spark Forum user tidwelltimj posted 
-split it back into separte code and header files and put back in the 
+I've taken the code that Spark Forum user tidwelltimj posted
+split it back into separte code and header files and put back in the
 credits and comments and got it compiling on the command line within SparkCore core-firmware
 
 
@@ -147,7 +147,7 @@ sample code bearing this copyright.
 
 OneWire::OneWire(uint16_t pin)
 {
-    pinMode(pin, INPUT);
+    pinMode(pin, INPUT_PULLUP);
     _pin = pin;
 }
 // Perform the onewire reset function.  We will wait up to 250uS for
@@ -180,7 +180,7 @@ uint8_t OneWire::reset(void)
     delayMicroseconds(480);
     noInterrupts();
 
-    pinModeFastInputWithPullup(); // MIKE : this uses the pull up resistor
+    pinModeFastInput(); // MIKE : this uses the pull up resistor
 
     delayMicroseconds(70);
 
@@ -239,7 +239,7 @@ uint8_t OneWire::read_bit(void)
 
     delayMicroseconds(3);
 
-    pinModeFastInputWithPullup();    // MIKE : this uses the pull up resistor
+    pinModeFastInput();    // MIKE : this uses the pull up resistor
 
     delayMicroseconds(10);
 
@@ -258,7 +258,7 @@ uint8_t OneWire::read_bit(void)
 // go tri-state at the end of the write to avoid heating in a short or
 // other mishap.
 //
-void OneWire::write(uint8_t v, uint8_t power /* = 0 */) 
+void OneWire::write(uint8_t v, uint8_t power /* = 0 */)
 {
     uint8_t bitMask;
 
@@ -276,7 +276,7 @@ void OneWire::write(uint8_t v, uint8_t power /* = 0 */)
     }
 }
 
-void OneWire::write_bytes(const uint8_t *buf, uint16_t count, bool power /* = 0 */) 
+void OneWire::write_bytes(const uint8_t *buf, uint16_t count, bool power /* = 0 */)
 {
     for (uint16_t i = 0 ; i < count ; i++)
         write(buf[i]);
@@ -294,7 +294,7 @@ void OneWire::write_bytes(const uint8_t *buf, uint16_t count, bool power /* = 0 
 //
 // Read a byte
 //
-uint8_t OneWire::read() 
+uint8_t OneWire::read()
 {
     uint8_t bitMask;
     uint8_t r = 0;
@@ -306,7 +306,7 @@ uint8_t OneWire::read()
     return r;
 }
 
-void OneWire::read_bytes(uint8_t *buf, uint16_t count) 
+void OneWire::read_bytes(uint8_t *buf, uint16_t count)
 {
     for (uint16_t i = 0 ; i < count ; i++)
         buf[i] = read();
