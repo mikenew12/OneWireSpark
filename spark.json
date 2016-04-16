@@ -2,6 +2,6 @@
   "name": "OneWire",
   "author": "Hotaman",
   "license": "MIT",
-  "version": "1.4.1",
+  "version": "1.4.2",
   "description": "Dallas 1-Wire protocol support with examples"
 }
